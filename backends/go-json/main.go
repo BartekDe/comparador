@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -20,8 +21,9 @@ func main() {
 			handleGetThings(w, r)
 		case "POST":
 			handlePostThings(w, r)
+		default:
+			fmt.Fprintf(w, "Sorry, this HTTP method is not supported.")
 		}
-
 	})
 
 	log.Fatal(http.ListenAndServe(":8001", nil))
